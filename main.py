@@ -12,6 +12,10 @@ def main():
 	print(f"Screen height: {SCREEN_HEIGHT}")
 	x = SCREEN_WIDTH/2
 	y = SCREEN_HEIGHT/2
+	updateable = pygame.sprite.Group()
+	drawable = pygame.sprite.Group()
+	Player.containers = (updateable, drawable)
+
 	player = Player(x, y, PLAYER_RADIUS)
 
 	running = True
@@ -21,7 +25,12 @@ def main():
 		        return
 		screen.fill("black")
 		
-		player.draw(screen)
+
+		for thing in updateable:
+			thing.update(dt)
+
+		for thing in drawable:
+			thing.draw(screen)
 
 		clock.tick(60)
 		dt = clock.tick(60) / 1000
