@@ -13,8 +13,6 @@ def main():
 	dt = 0
 	screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 	print("Starting Asteroids!")
-	print(f"Screen width: {SCREEN_WIDTH}")
-	print(f"Screen height: {SCREEN_HEIGHT}")
 	x = SCREEN_WIDTH/2
 	y = SCREEN_HEIGHT/2
 	updateable = pygame.sprite.Group()
@@ -35,7 +33,13 @@ def main():
 	while running:
 		for event in pygame.event.get():
 		    if event.type == pygame.QUIT:
-		        return
+		    	print("Window Closed")
+		        running = False
+		    if event.type == pygame.KEYDOWN:
+		        if event.key == pygame.K_ESCAPE:
+		            print("Escape pressed!")
+		            running = False 
+
 		screen.fill("black")
 		score.draw(screen)
 
@@ -44,7 +48,8 @@ def main():
 
 		for thing in updateable:
 			thing.update(dt)
-			
+		keys = pygame.key.get_pressed()
+
 
 
 		for aster in asteroids:

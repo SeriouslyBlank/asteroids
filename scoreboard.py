@@ -1,7 +1,7 @@
 import pygame
 
 class Scoreboard:
-    def __init__(self, font_size=36, color=(255, 255, 255)):
+    def __init__(self, font_size=36, color=(255, 215, 0)):
         self.score = 0
         self.font = pygame.font.SysFont(None, font_size)
         self.color = color
