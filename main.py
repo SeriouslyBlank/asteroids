@@ -5,7 +5,7 @@ from asteroid import *
 from asteroidfield import AsteroidField
 import sys
 from shot import *
-
+from scoreboard import Scoreboard
 
 def main():
 	pygame.init()
@@ -21,11 +21,13 @@ def main():
 	drawable = pygame.sprite.Group()
 	asteroids = pygame.sprite.Group()
 	shot_grp = pygame.sprite.Group()
+	Scoreboard.containers = (drawable)
 	Shot.containers = (shot_grp, updateable, drawable)
 	Player.containers = (updateable, drawable)
 	Asteroid.containers = (asteroids, updateable, drawable)
 	AsteroidField.containers = (updateable)
 	asteroidfield = AsteroidField()
+	score = Scoreboard()
 
 	player = Player(x, y, PLAYER_RADIUS)
 
@@ -35,6 +37,7 @@ def main():
 		    if event.type == pygame.QUIT:
 		        return
 		screen.fill("black")
+		score.draw(screen)
 
 		for thing in drawable:
 			thing.draw(screen)		
@@ -51,7 +54,7 @@ def main():
 			for bullet in shot_grp:
 				if bullet.collided(aster) ==True:
 					bullet.kill()
-					aster.split()
+					aster.split(score)
 
 
 		
