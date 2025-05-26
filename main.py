@@ -48,6 +48,10 @@ def main():
 			if player.collided(aster) == True:
 				print("Game over!")
 				sys.exit()
+			for bullet in shot_grp:
+				if bullet.collided(aster) ==True:
+					bullet.kill()
+					aster.split()
 
 
 		
