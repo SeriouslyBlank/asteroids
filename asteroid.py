@@ -16,13 +16,7 @@ class Asteroid(CircleShape):
 		self.position += (self.velocity * dt)
 
 
-	def collided(self, other):
-		total_rad = self.radius + other.radius
-		dist = self.position.distance_to(other.position)
-
-		if total_rad <= dist:
-			return True
-		return False
+	
 
 		
 		
